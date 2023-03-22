@@ -6,38 +6,40 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class No4134 {
+public class No4948 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-		int N = Integer.parseInt(br.readLine());
+		while (true) {
+			int num = Integer.parseInt(br.readLine());
 
-		for (int i = 0; i < N; i++) {
-			long num = Long.parseLong(br.readLine());
-			long prime = num;
+			if (0 == num)
+				break;
 
-			if (2 > prime)
-				prime = 2;
+			int cnt = 0;
 
-			while (true) {
-				int count = 0;
-				for (int j = 2; j <= (int) Math.sqrt((double) prime); j++) {
-					if (0 == prime % j) {
-						count = 1;
+			for (int i = num + 1; i <= 2 * num; i++) {
+				boolean flag = true;
+
+				for (int j = 2; j <= (int) Math.sqrt((double) i); j++) {
+					if (0 == i % j) {
+						flag = false;
 						break;
 					}
 				}
-				if (count == 0)
-					break;
-				prime++;
+				
+				if(flag) {
+					cnt++;
+				}
 			}
-
-			bw.write(Long.toString(prime));
+			
+			bw.write(Integer.toString(cnt));
 			bw.newLine();
 		}
+
 		bw.flush();
 		bw.close();
-		br.close();
+		bw.close();
 	}
 }

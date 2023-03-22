@@ -36,6 +36,8 @@ public class No1764 {
 				neverSeen.add(input);
 		}
 		
+		neverSeen.sort(null);
+		
 		bw.write(Integer.toString(neverSeen.size()));
 		bw.newLine();
 		

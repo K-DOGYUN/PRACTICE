@@ -1,4 +1,4 @@
-package baekjoon;
+package baekjoon.step8.basicMath;
 
 import java.io.IOException;
 import java.util.Scanner;

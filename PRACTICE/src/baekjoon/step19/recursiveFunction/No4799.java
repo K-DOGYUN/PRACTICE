@@ -18,21 +18,11 @@ public class No4799 {
 
 			int N = Integer.parseInt(str);
 
-			int pow3 = (int) Math.pow((double) 3, (double) N);
-			boolean cantor[] = new boolean[pow3];
+			Cantor c = new Cantor(N);
+			c.cantoring(N);
 
-			for (int i = 0; i < N; i++) {
-				int pow = (int) Math.pow((double) 3, (double) i);
-
-				for (int j = pow; j < pow3; j += 2 * pow) {
-					for (int k = j; k < j + pow; k++)
-						cantor[k] = true;
-				}
-
-			}
-
-			for (int i = 0; i < cantor.length; i++) {
-				if (cantor[i])
+			for (int i = 0; i < c.cantor.length; i++) {
+				if (c.cantor[i])
 					bw.write(" ");
 				else
 					bw.write("-");
@@ -43,5 +33,31 @@ public class No4799 {
 		bw.flush();
 		bw.close();
 		br.close();
+	}
+}
+
+class Cantor {
+	boolean[] cantor;
+
+	Cantor(int N) {
+		cantor = new boolean[(int) Math.pow(3, N)];
+	}
+
+	public void cantoring(int N) {
+		int M = (int) Math.pow(3, N - 1);
+
+		if (M == 0)
+			M = 1;
+
+		for (int i = M; i < cantor.length; i += 2 * M) {
+
+			for (int j = i; j < i + M; j++) {
+
+				cantor[j] = true;
+			}
+		}
+
+		if (N > 1)
+			cantoring(N - 1);
 	}
 }

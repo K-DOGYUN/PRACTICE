@@ -8,24 +8,36 @@ public class No10870 {
 
 		int n = sc.nextInt();
 
-		int fibo1 = 0;
-		int fibo2 = 1;
+		fibonacci f = new fibonacci();
 
-		for (int i = 0; i < n - 1; i++) {
-			if (fibo1 < fibo2)
-				fibo1 = fibo1 + fibo2;
-			else
-				fibo2 = fibo1 + fibo2;
-		}
-		
-		if (0==n)
+		f.next(n);
+
+		if (0 == n)
 			System.out.println(0);
-		else if (fibo1 < fibo2)
-			System.out.println(fibo2);
 		else
-			System.out.println(fibo1);
+			System.out.println(f.fibo);
 
 		sc.close();
 	}
 }
+
 //		fibonacci
+class fibonacci {
+	int fibo;
+	int fiboPre;
+
+	fibonacci() {
+		fibo = 0;
+		fiboPre = 1;
+	}
+
+	public void next(int n) {
+		int sum = fibo + fiboPre;
+		fiboPre = fibo;
+		fibo = sum;
+
+		if (n > 1) {
+			next(n - 1);
+		}
+	}
+}

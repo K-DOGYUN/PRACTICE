@@ -37,7 +37,7 @@ public class No7785 {
 			}
 		}
 		
-		names.sort(Collections.reverseOrder());;
+		names.sort(Collections.reverseOrder());
 		
 		for(String name : names) {
 			bw.write(name);

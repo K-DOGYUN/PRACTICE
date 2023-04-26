@@ -1,4 +1,4 @@
-package baekjoon.step12.queue;
+package baekjoon.step12.queueDeque;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

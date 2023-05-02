@@ -1,19 +1,18 @@
 package baekjoon.step12.queueDeque;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.io.OutputStreamWriter;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class No1966 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
 		int T = Integer.parseInt(br.readLine());
 
@@ -22,26 +21,35 @@ public class No1966 {
 			int N = Integer.parseInt(st.nextToken());
 			int M = Integer.parseInt(st.nextToken());
 
-			Queue<Integer> queue = new LinkedList<>();
-			Map<Integer, Integer> map = new HashMap<>();
+			Queue<Integer> nums = new LinkedList<>();
+			Queue<Integer> order = new LinkedList<>();
 
 			st = new StringTokenizer(br.readLine(), " ");
 
 			for (int i = 0; i < N; i++) {
 				int num = Integer.parseInt(st.nextToken());
-
-				queue.add(num);
-
-				if (map.containsKey(num))
-					map.put(num, map.get(num) + 1);
-				else
-					map.put(num, 1);
+				nums.add(num);
+				order.add(i);
 			}
-			Integer[] arr = map.keySet().toArray(new Integer[map.size()]);
-			Arrays.sort(arr, Collections.reverseOrder());
-			for(Object key : map.keySet().toArray(new Integer[map.size()]))
-				System.out.println(key);
+
+			int cnt = 0;
+
+			for (int i = 9; i >= 1; i--) {
+				while (nums.contains(i)) {
+					if (nums.peek() == i) {
+						cnt++;
+						nums.poll();
+						if (order.poll() == M)
+							bw.write(cnt + "\n");
+					} else {
+						nums.add(nums.poll());
+						order.add(order.poll());
+					}
+				}
+			}
+
 		}
+		bw.close();
 		br.close();
 	}
 }

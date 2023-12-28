@@ -1,4 +1,4 @@
-package baekjoon.step11.stack;
+package baekjoon.step11.stackQueDeq;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
-public class No15649 {
+public class No15650 {
 	
 	private static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
@@ -15,31 +15,27 @@ public class No15649 {
 		int N = sc.nextInt();
 		int M = sc.nextInt();
 		
-		int[] arr = new int[M];
-		boolean[] useYn = new boolean[N];
-		
-		seq(N, M, 0, arr, useYn);
+		getSeq(new boolean[N], new int[M], 0, 0);
 
 		bw.flush();
 		bw.close();
 		sc.close();
 	}
 	
-	private static void seq(int N, int M, int depth, int[] arr, boolean[] useYn) throws IOException {
-		if (M == depth) {
+	private static void getSeq(boolean[] useYn, int[] arr, int depth, int init) throws IOException{
+		if (depth == arr.length) {
 			for (int i : arr) {
 				bw.write(i + " ");
 			}
 			bw.newLine();
-			
 			return;
 		}
 		
-		for (int i = 0; i < N; i++) {
-			if (useYn[i] == false) {
+		for (int i = init; i < useYn.length; i++) {
+			if (!useYn[i]) {
 				useYn[i] = true;
 				arr[depth] = i + 1;
-				seq(N, M, depth + 1, arr, useYn);
+				getSeq(useYn, arr, depth + 1, i + 1);
 				useYn[i] = false;
 			}
 		}
